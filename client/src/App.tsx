@@ -15,8 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/memo" element={<MemoP />} />
-        <Route path="/newmemo" element={<NewMemo />} />
-        <Route path="/newpaper" element={<NewPaper />} />
+        <Route path="/nm" element={<NewMemo />} />
+        <Route path="/np" element={<NewPaper />} />
         <Route path="/paper" element={<Paper />} />
       </Routes>
     </BrowserRouter>
