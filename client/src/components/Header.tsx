@@ -13,8 +13,11 @@ const HeaderWrap = styled.div`
   text-align: center;
   font-weight: 600;
   line-height: 4rem;
+  font-family: "GothicA1-Light";
 `;
 
 export default function Header({ title }: { title: string }) {
-  return <HeaderWrap>{title}</HeaderWrap>;
+  return <HeaderWrap>
+    {title}
+  </HeaderWrap>;
 }
