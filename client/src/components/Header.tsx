@@ -1,12 +1,7 @@
-export default function Header() {
+export default function Header({title}: {title: string}) {
   return (
     <div>
-      <div></div>
-      <div></div>
-      <div></div>
-      
-      <p>Bable site</p>
-      
+      {title}
     </div>
   )
 }

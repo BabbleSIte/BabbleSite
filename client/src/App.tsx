@@ -7,6 +7,7 @@ import NewPaper from "./pages/NewPaper";
 import Paper from "./pages/Paper";
 
 function App() {
+  // eslint-disable-next-line
   const [title, setTitle] = useState<string>("");
 
   return (
