@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import { PageWrapper } from "../styledComponents";
+// import axios from "axios";
+// 서버랑 연결해서 디비에서 uuid에 맞는 페이퍼에 대한 정보 불러오기. (theme, memolist 등)
 
 const PaperWrap = styled(PageWrapper)`
     padding: 5rem;
@@ -11,7 +13,8 @@ const PaperWrap = styled(PageWrapper)`
         transform: rotate(10deg);
     }
 
-    :nth-child(2n + 1) {
+    :nth-child(2n + 1),
+    :first-child {
         transform: rotate(-10deg);
     }
 `;
