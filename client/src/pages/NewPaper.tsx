@@ -29,7 +29,7 @@ export default function NewPaper() {
 		// 		}
 		// 	});
 		// } catch (err) {
-		// 	window.alert("");
+		// 	alert("");
 		// }
 		console.log(newId);
 		navigate("/paper");
@@ -39,42 +39,43 @@ export default function NewPaper() {
 		<>
 			<Header title="새로운 페이퍼 만들기" />
 			<NewPaperWrapper>
-				<div>
-					<form onSubmit={e => e.preventDefault()}>
-						<label>
-							페이퍼 제목
-							<input
-								value={newPaper.title}
-								onChange={e =>
-									setNwePaper({
-										...newPaper,
-										title: e.target.value,
-									})
-								}
-							/>
-						</label>
-					</form>
-					<div>
-						<h3>테마 선택</h3>
-						<ul>
-							{backgroundList.map(list => {
-								return (
-									<li
-										key={"#" + list.hex}
-										className="themeColor"
+				<form onSubmit={e => e.preventDefault()}>
+					<label htmlFor="paper-title-input">페이퍼 제목</label>
+					<input
+						value={newPaper.title}
+						id="paper-title-input"
+						onChange={e =>
+							setNwePaper({
+								...newPaper,
+								title: e.target.value,
+							})
+						}
+					/>
+				</form>
+				<div className="theme-section">
+					<h3>테마 선택</h3>
+					<ul>
+						{backgroundList.map(list => {
+							return (
+								<li
+									key={"#" + list.hex}
+									className="themeColor"
+									onClick={() => getTheme(list)}
+								>
+									<div
 										style={{
 											backgroundColor: "#" + list.hex,
 										}}
-										onClick={() => getTheme(list)}
-									>
-										#{list.hex}
-									</li>
-								);
-							})}
-						</ul>
-					</div>
-					<button onClick={postPaper}>paper 생성하기</button>
+									></div>
+									<span>#{list.hex}</span>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
+				<button className="create-paper-btn" onClick={postPaper}>
+					paper 생성하기
+				</button>
 			</NewPaperWrapper>
 		</>
 	);

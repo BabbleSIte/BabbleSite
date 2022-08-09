@@ -15,11 +15,15 @@ export const PaperWrap = styled(PageWrapper)`
 	}
 `;
 
-export const MemoStyle = styled.div<{ prop: memoInfo }>`
+export const MemoStyle = styled.div<{
+	background: string;
+	color: string;
+	textAlign: string;
+}>`
 	width: 10rem;
 	height: 12rem;
-	background: ${prop => prop.prop.background};
-	color: ${prop => prop.prop.color};
-	text-align: ${prop => prop.prop.textAlign};
 	padding: 15px;
+	background-color: ${li => li.background};
+	color: ${li => li.color};
+	text-align: ${li => li.textAlign};
 `;

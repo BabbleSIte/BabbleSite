@@ -53,7 +53,11 @@ export default function Paper() {
 				{paperList.map(li => {
 					return (
 						<div key={li.message}>
-							<MemoStyle prop={li}>
+							<MemoStyle
+								background={li.background}
+								color={li.color}
+								textAlign={li.textAlign}
+							>
 								{li.message}
 								<span>{li.from}</span>
 							</MemoStyle>
