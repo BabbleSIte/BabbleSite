@@ -1,22 +1,22 @@
-import axios from "axios";
+// interface ColorType {
+//     XYZ: {x: number, y: number, z: number, fraction: {x: number, y: number, z: number}, value: string},
+// cmyk: {fraction: {…}, value: 'cmyk(7, 26, 0, 71)', c: 7, m: 26, y: 0, …}
+// contrast: {value: '#ffffff'}
+// hex: {value: '#443649', clean: '443649'}
+// hsl: {fraction: {…}, h: 284, s: 15, l: 25, value: 'hsl(284, 15%, 25%)'}
+// hsv: {fraction: {…}, value: 'hsv(284, 26%, 29%)', h: 284, s: 26, v: 29}
+// image: {bare: 'https://www.thecolorapi.com/id?format=svg&named=false&hex=443649', named: 'https://www.thecolorapi.com/id?format=svg&hex=443649'}
+// name: {value: 'Mortar', closest_named_hex: '#504351', exact_match_name: false, distance: 1097}
+// rgb: {fraction: {…}, r: 68, g: 54, b: 73, value: 'rgb(68, 54, 73)'}
+// _embedded: {}
+// _links: {self: {…}}
+// }
 
-export async function getTheme(color: {
+export interface ColorType {
     hex: string;
     rgb: string;
     hsl: string;
     cmyk: string;
-}) {
-    try {
-        await axios
-            .get(
-                `https://www.thecolorapi.com/scheme?hex=${color.hex}&rgb=${color.rgb}&hsl=${color.hsl},&cmyk=${color.hsl}&format=json&mode=analogic&count=6`
-            )
-            .then((res) => {
-                console.log(res);
-            });
-    } catch (err) {
-        console.log(err);
-    }
 }
 
 // export type Theme = {
@@ -29,7 +29,7 @@ export async function getTheme(color: {
 //   }
 // ]
 
-export const backgroundList = [
+export const backgroundList: ColorType[] = [
     {
         hex: "FCF8E8",
         rgb: "252, 248, 232",
