@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 import Header from "../components/Header";
 import { PaperWrap, MemoStyle } from "../style/pageStyle/PaperStyle";
 
@@ -46,8 +48,12 @@ const paperList: memoInfo[] = [
     },
 ];
 
-export default function Paper() {
+export default function Paper({ match }: { match: any }) {
+    const paperId = match.params.paperId;
     const navigate = useNavigate();
+    useEffect(() => {
+        // TODO: uuid를 이용해서 서버로 페이페의 데이터를 요청하고 받아와서 뿌리기.
+    }, []);
 
     return (
         <>

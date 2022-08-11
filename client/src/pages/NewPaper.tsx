@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import Header from "../components/Header";
-import { backgroundList, ColorType } from "../theme";
+import ColorPicker from "../components/ColorPicker";
+
 import { NewPaperWrapper } from "../style/pageStyle/NewPaperStyle";
+import { StyledButton } from "../style/styledComponents";
+
+import axios from "axios";
 
 export default function NewPaper() {
     const [newPaper, setNwePaper] = useState<{
@@ -11,22 +15,27 @@ export default function NewPaper() {
         uuid: string;
         theme: string[];
     }>({ title: "", uuid: "", theme: [""] });
+    const [color, setColor] = useState<string>("ffffff");
     const navigate = useNavigate();
 
-    async function getTheme(color: ColorType) {
+    async function getTheme(color: string) {
         try {
             await axios
                 .get(
-                    `https://www.thecolorapi.com/scheme?hex=${color.hex}&rgb=${color.rgb}&hsl=${color.hsl},&cmyk=${color.hsl}&format=json&mode=analogic&count=6`
+                    `https://www.thecolorapi.com/scheme?hex=${color.slice(
+                        1
+                    )}&format=json&mode=analogic&count=6`
                 )
                 .then((res) => {
-                    if (res.status === 200) {
+                    if (res.data.colors.length === 6) {
                         let colorArr: string[] = res.data.colors.map(
                             (color: any) => {
                                 return color.hex.value;
                             }
                         );
                         return setNwePaper({ ...newPaper, theme: colorArr });
+                    } else {
+                        alert("다시 시도해주세요!");
                     }
                 });
         } catch (err) {
@@ -46,17 +55,8 @@ export default function NewPaper() {
     }
 
     function postPaper() {
-        let newId = uuid();
+        const newId: string = uuid();
         console.log(newPaper);
-        // try {
-        // 	axios.post("", { data: { ...newPaper, uuid: newId, theme:  } }).then(res => {
-        // 		if (res.status === 200) {
-        // 			navigate("/paper/" + newId);
-        // 		}
-        // 	});
-        // } catch (err) {
-        // 	alert("");
-        // }
         console.log(newId);
         navigate("/paper");
     }
@@ -79,30 +79,16 @@ export default function NewPaper() {
                         }
                     />
                 </form>
-                <div className="theme-section">
-                    <h3>테마 선택</h3>
-                    <ul>
-                        {backgroundList.map((list: ColorType) => {
-                            return (
-                                <li
-                                    key={"#" + list.hex}
-                                    className="themeColor"
-                                    onClick={() => getTheme(list)}
-                                >
-                                    <div
-                                        style={{
-                                            backgroundColor: "#" + list.hex,
-                                        }}
-                                    ></div>
-                                    <span>#{list.hex}</span>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
-                <button className="create-paper-btn" onClick={postPaper}>
+                <form
+                    className="theme-section"
+                    onSubmit={(e) => e.preventDefault()}
+                >
+                    <ColorPicker label="배경 선택하기" setColor={setColor} />
+                    <button onClick={() => getTheme(color)}></button>
+                </form>
+                <StyledButton onClick={postPaper} width="15vw" height="8vh">
                     paper 생성하기
-                </button>
+                </StyledButton>
             </NewPaperWrapper>
         </>
     );
