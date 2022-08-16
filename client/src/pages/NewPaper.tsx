@@ -12,6 +12,30 @@ import { StyledButton } from "../style/styledComponents";
 
 import axios from "axios";
 
+// ======================================
+
+export async function getTheme(color: string) {
+	try {
+		await axios
+			.get(
+				`https://www.thecolorapi.com/scheme?hex=${color.slice(
+					1
+				)}&format=json&mode=analogic&count=6`
+			)
+			.then(res => {
+				if (res.data.colors.length === 6) {
+					return res.data.colors.map((color: any) => {
+						return color.hex.value;
+					});
+				} else {
+					alert("다시 시도해주세요!");
+				}
+			});
+	} catch (err) {
+		console.log(err);
+	}
+}
+
 export default function NewPaper() {
 	const [newPaper, setNwePaper] = useState<{
 		title: string;
@@ -20,30 +44,6 @@ export default function NewPaper() {
 	}>({ title: "", uuid: "", theme: [""] });
 	const [color, setColor] = useState<string>("ffffff");
 	const navigate = useNavigate();
-
-	async function getTheme(color: string) {
-		try {
-			await axios
-				.get(
-					`https://www.thecolorapi.com/scheme?hex=${color.slice(
-						1
-					)}&format=json&mode=analogic&count=6`
-				)
-				.then(res => {
-					if (res.data.colors.length === 6) {
-						let colorArr: string[] = res.data.colors.map((color: any) => {
-							return color.hex.value;
-						});
-
-						return setNwePaper({ ...newPaper, theme: colorArr });
-					} else {
-						alert("다시 시도해주세요!");
-					}
-				});
-		} catch (err) {
-			console.log(err);
-		}
-	}
 
 	function uuid() {
 		return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -56,12 +56,21 @@ export default function NewPaper() {
 		);
 	}
 
+	const themeHandler = () => {
+		let colorArr = getTheme(color);
+		console.log(colorArr);
+		//setNwePaper()
+	};
+
 	function postPaper() {
 		const newId: string = uuid();
+
 		console.log(newPaper);
 		console.log(newId);
 		navigate("/paper/" + newId);
 	}
+
+	// ======================================
 
 	return (
 		<>
@@ -84,7 +93,7 @@ export default function NewPaper() {
 				</form>
 				<form className="theme-section" onSubmit={e => e.preventDefault()}>
 					<ColorPicker label="배경 선택하기" setColor={setColor} />
-					<button onClick={() => getTheme(color)}>배경 선택하기</button>
+					<button onClick={themeHandler}>배경 선택하기</button>
 					<ul>
 						{newPaper.theme.length === 6 &&
 							newPaper.theme.map((color: string) => {
