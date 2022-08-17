@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { LandingWrap } from "../style/pageStyle/LandingStyle";
+import { StyledButton } from "../style/componentStyle/styledButton";
 
 export default function Landing() {
 	const navigate = useNavigate();
 
 	return (
 		<LandingWrap>
-			<button onClick={() => navigate("/np")}>babble site 시작하기</button>
+			<StyledButton onClick={() => navigate("/np")} width="20vw" height="5vw">
+				babble site 시작하기
+			</StyledButton>
 		</LandingWrap>
 	);
 }
