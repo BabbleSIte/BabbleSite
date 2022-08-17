@@ -8,7 +8,7 @@ import {
 	NewPaperWrapper,
 	TemeListStyle,
 } from "../style/pageStyle/NewPaperStyle";
-import { StyledButton } from "../style/styledComponents";
+import { StyledButton } from "../style/componentStyle/styledButton";
 
 import axios from "axios";
 

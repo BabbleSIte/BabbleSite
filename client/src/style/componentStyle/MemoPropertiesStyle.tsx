@@ -24,5 +24,12 @@ export const MemoPropertiesStyle = styled.ul`
 				cursor: pointer;
 			}
 		}
+
+		.memoBg {
+			display: inline-block;
+			width: 1rem;
+			height: 1rem;
+			border-radius: 50%;
+		}
 	}
 `;

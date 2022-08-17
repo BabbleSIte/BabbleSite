@@ -1,28 +1,32 @@
 import Header from "../components/Header";
-import { useState } from "react";
-import { StyledButton } from "../style/styledComponents";
+import { useState, useRef } from "react";
+import { StyledButton } from "../style/componentStyle/styledButton";
 import { MemoWrapper } from "../style/pageStyle/MemoStyle";
 import MemoProperties from "../components/MemoProperties";
 
 export interface MemoProperty {
 	content: string;
-	align: string;
-	bgColor: string;
+	textAlign: string;
+	backgroundColor: string;
 	color: string;
-	font: string;
+	fontFamily: string;
 }
 
 export default function NewMemo() {
-	var [memoProperties, setMemoProperties] = useState<MemoProperty>({
+	const textarea = useRef<HTMLTextAreaElement | null>(null);
+	const [memoProperties, setMemoProperties] = useState<MemoProperty>({
 		content: "",
-		align: "",
-		bgColor: "",
+		textAlign: "",
+		backgroundColor: "",
 		color: "",
-		font: "",
+		fontFamily: "",
 	});
 
-	function propertyHandler(name: string, value: string) {
+	function propertyHandler(name: any, value: string) {
 		setMemoProperties({ ...memoProperties, [name]: value });
+		if (textarea.current !== null) {
+			textarea.current.style[name] = value;
+		}
 	}
 
 	return (
@@ -30,8 +34,9 @@ export default function NewMemo() {
 			<Header title="새로운 메모 만들기"></Header>
 			<MemoProperties propertyHandler={propertyHandler} />
 			<textarea
+				ref={textarea}
 				rows={15}
-				maxLength={200}
+				spellCheck={false}
 				onChange={e => propertyHandler("content", e.target.value)}
 			/>
 			<StyledButton width="200px" height="50px">
