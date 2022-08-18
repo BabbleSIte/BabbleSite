@@ -6,6 +6,7 @@ import NewMemo from "./pages/NewMemo";
 import NewPaper from "./pages/NewPaper";
 import Paper from "./pages/Paper";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
 	const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -19,6 +20,7 @@ function App() {
 				<Route path="/np" element={<NewPaper />} />
 				<Route path="/paper/:paperid" element={<Paper />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
 			</Routes>
 		</BrowserRouter>
 	);
