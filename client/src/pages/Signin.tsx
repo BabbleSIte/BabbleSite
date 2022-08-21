@@ -1,15 +1,22 @@
 import Header from "../components/Header";
 import { useState } from "react";
-import { LoginWrapper } from "../style/pageStyle/LoginStyle";
-import { StyledButton } from "../style/componentStyle/styledButton";
+import { SignWrapper } from "../style/pageStyle/LoginStyle";
+import {
+	StyledButton,
+	KakaoLoginBtn,
+} from "../style/componentStyle/styledButton";
 
-export default function Login() {
+import { useNavigate } from "react-router-dom";
+
+export default function Signin() {
 	const [loginInfo, setLoginInfo] = useState<{ id: string; pw: string }>({
 		id: "",
 		pw: "",
 	});
+
+	const navigate = useNavigate();
 	return (
-		<LoginWrapper>
+		<SignWrapper>
 			<Header title="로그인" />
 			<div className="loginSection">
 				<div className="input-region">
@@ -31,12 +38,24 @@ export default function Login() {
 					/>
 				</div>
 
-				<div>
-					<StyledButton width="150px" height="50px">
-						로그인
+				<div className="btn-section">
+					<div>
+						<KakaoLoginBtn width="150px" height="50px">
+							카카오 로그인
+						</KakaoLoginBtn>
+						<StyledButton width="150px" height="50px">
+							로그인
+						</StyledButton>
+					</div>
+					<StyledButton
+						onClick={() => navigate("/signup")}
+						width="150px"
+						height="50px"
+					>
+						회원가입
 					</StyledButton>
 				</div>
 			</div>
-		</LoginWrapper>
+		</SignWrapper>
 	);
 }

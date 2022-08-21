@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-export const LoginWrapper = styled.div`
+export const SignWrapper = styled.div`
 	width: 100vw;
 	height: 100vh;
 	background-color: #e7f8de;
 
 	.loginSection {
 		width: 500px;
-		height: 500px;
+		/* height: 500px; */
 		border-radius: 20px;
 		background-color: #fff;
 		margin: 60px auto;
@@ -21,7 +21,7 @@ export const LoginWrapper = styled.div`
 		.input-region {
 			display: flex;
 			width: 100%;
-			height: 100px;
+			padding: 30px 0;
 			align-items: center;
 			justify-content: space-between;
 
@@ -40,6 +40,12 @@ export const LoginWrapper = styled.div`
 					border-color: #79db48;
 					outline: none;
 				}
+			}
+		}
+
+		.btn-section {
+			div {
+				display: flex;
 			}
 		}
 	}

@@ -27,7 +27,7 @@ export const NewPaperWrapper = styled(PageWrapper)`
 	}
 `;
 
-export const TemeListStyle = styled.li<{ bg: string }>`
+export const ThemeListStyle = styled.li<{ bg: string }>`
 	width: 20px;
 	height: 20px;
 	border: 1px solid #ddd;

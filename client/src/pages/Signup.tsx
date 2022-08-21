@@ -1,29 +1,42 @@
 import Header from "../components/Header";
 import { useState } from "react";
-import { LoginWrapper } from "../style/pageStyle/LoginStyle";
+import { SignWrapper } from "../style/pageStyle/LoginStyle";
 import { StyledButton } from "../style/componentStyle/styledButton";
 
 export default function Signup() {
 	const [loginInfo, setLoginInfo] = useState<{
-		id: string;
+		email: string;
+		name: string;
 		pw: string;
 		pwConfirm: string;
 	}>({
-		id: "",
+		email: "",
+		name: "",
 		pw: "",
 		pwConfirm: "",
 	});
 	return (
-		<LoginWrapper>
-			<Header title="로그인" />
+		<SignWrapper>
+			<Header title="회원가입" />
 			<div className="loginSection">
 				<div className="input-region">
-					<label htmlFor="id">아이디</label>
+					<label htmlFor="email">e-mail</label>
 					<input
-						id="id"
+						id="email"
+						type="email"
+						placeholder="이메일을 입력해주세요"
+						onChange={e =>
+							setLoginInfo({ ...loginInfo, email: e.target.value })
+						}
+					/>
+				</div>
+				<div className="input-region">
+					<label htmlFor="name">이름</label>
+					<input
+						id="name"
 						type="text"
-						placeholder="아이디를 입력해주세요"
-						onChange={e => setLoginInfo({ ...loginInfo, id: e.target.value })}
+						placeholder="이름을 입력해주세요"
+						onChange={e => setLoginInfo({ ...loginInfo, name: e.target.value })}
 					/>
 				</div>
 				<div className="input-region">
@@ -47,12 +60,10 @@ export default function Signup() {
 					/>
 				</div>
 
-				<div>
-					<StyledButton width="150px" height="50px">
-						로그인
-					</StyledButton>
-				</div>
+				<StyledButton width="20vw" height="5vw">
+					회원가입 완료
+				</StyledButton>
 			</div>
-		</LoginWrapper>
+		</SignWrapper>
 	);
 }
