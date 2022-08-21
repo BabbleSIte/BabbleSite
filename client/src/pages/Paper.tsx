@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import { PaperWrap, MemoStyle } from "../style/pageStyle/PaperStyle";
+import { StyledButton } from "../style/componentStyle/styledButton";
 
 type memoInfo = {
 	id: number;
@@ -46,6 +47,22 @@ const paperList: memoInfo[] = [
 		color: "#787676",
 		textAlign: "left",
 	},
+	{
+		id: 4,
+		message: "추카추카",
+		from: "은빈",
+		background: "#b0ff91",
+		color: "#787676",
+		textAlign: "left",
+	},
+	{
+		id: 5,
+		message: "추카추카",
+		from: "은빈",
+		background: "#ff91f0",
+		color: "#787676",
+		textAlign: "left",
+	},
 ];
 
 export default function Paper() {
@@ -63,7 +80,7 @@ export default function Paper() {
 				<ul>
 					{paperList.map(li => {
 						return (
-							<div key={li.message + li.id}>
+							<li key={li.message + li.id}>
 								<MemoStyle
 									background={li.background}
 									color={li.color}
@@ -72,13 +89,18 @@ export default function Paper() {
 									{li.message}
 									<p>{li.from}</p>
 								</MemoStyle>
-							</div>
+							</li>
 						);
 					})}
 				</ul>
-				<button type="button" onClick={() => navigate("/nm")}>
+				<StyledButton
+					type="button"
+					onClick={() => navigate("/nm")}
+					width="12rem"
+					height="3rem"
+				>
 					새로운 메모 생성
-				</button>
+				</StyledButton>
 			</PaperWrap>
 		</>
 	);

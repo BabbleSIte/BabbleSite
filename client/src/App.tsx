@@ -14,7 +14,6 @@ function App() {
 
 	return (
 		<div>
-			{/* <Header title="" /> */}
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Landing />} />
