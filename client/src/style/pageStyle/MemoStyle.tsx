@@ -6,6 +6,7 @@ export const MemoWrapper = styled(PageWrapper)`
 		resize: none;
 		display: block;
 		width: 30vw;
+		height: 40vh;
 		margin: auto;
 		padding: 15px;
 		overflow: auto;
