@@ -6,8 +6,10 @@ export const StyledButton = styled.button<{
 }>`
 	width: ${prop => prop.width};
 	height: ${prop => prop.height};
+	display: block;
+	padding: 10px;
 	margin: auto;
-	font-size: 1.6rem;
+	font-size: 1.2em;
 	font-weight: 500;
 	color: #fff;
 	border-radius: 10rem;

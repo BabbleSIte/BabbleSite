@@ -21,7 +21,6 @@ export default function Landing() {
 			>
 				로그인하러 가기
 			</StyledButton>
-
 			<StyledButton onClick={() => navigate("/np")} width="20vw" height="5vw">
 				babble site 시작하기
 			</StyledButton>

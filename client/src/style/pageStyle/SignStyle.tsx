@@ -21,7 +21,7 @@ export const SignWrapper = styled.div`
 		.input-region {
 			display: flex;
 			width: 100%;
-			padding: 30px 0;
+			padding: 20px 0;
 			align-items: center;
 			justify-content: space-between;
 
@@ -31,21 +31,38 @@ export const SignWrapper = styled.div`
 				margin-right: 20px;
 				min-width: 100px;
 			}
-			input {
-				border-bottom: 2px solid #666;
-				flex-grow: 1;
-				padding: 5px;
 
-				&:focus {
-					border-color: #79db48;
-					outline: none;
+			div {
+				flex-grow: 1;
+				input {
+					width: 100%;
+					border-bottom: 2px solid #666;
+					padding: 5px;
+					margin-bottom: 10px;
+
+					&:focus {
+						border-color: #79db48;
+						outline: none;
+					}
+				}
+
+				span {
+					font-size: 0.75em;
+					color: #adadad;
+					display: block;
 				}
 			}
 		}
 
 		.btn-section {
+			margin-top: 20px;
+
 			div {
 				display: flex;
+			}
+
+			button {
+				margin: 10px auto;
 			}
 		}
 	}
